@@ -16,34 +16,23 @@ public class FireArrow : MonoBehaviour
 
     private void Update()
     {
-        if (canFire)
+        if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
-            {
-                StartCoroutine(OnFireArrow());
-            }
+            StartCoroutine(OnFireArrow());
         }
     }
 
     public float fireDelay = 0.2f;
 
-    private bool canFire = true;
-
     private IEnumerator OnFireArrow()
     {
-        canFire = false;
-
         //어택엑션 진행
-        animator.enabled = false;
-        animator.enabled = true;
-        animator.Play("Attack01");
+        animator.Play("Attack01", 0, 0);
 
         // 잠시 쉬었다가
         yield return new WaitForSeconds(fireDelay);
 
         //애로우를 발사.
         Instantiate(arrowGo, arrowSpawnPosition.position, transform.rotation);
-
-        canFire = true;
     }
 }

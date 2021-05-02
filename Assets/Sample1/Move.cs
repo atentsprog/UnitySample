@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +6,11 @@ public class Move : MonoBehaviour
 {
     public float speed = 0.1f;
 
+    public Animator animator;
+
     private void Update()
     {
-        // WASD, WÀ§·Î, A¿ÞÂÊ,S¾Æ·¡, D¿À¸¥ÂÊ
+        // WASD, Wìœ„ë¡œ, Aì™¼ìª½,Sì•„ëž˜, Dì˜¤ë¥¸ìª½
         float moveX = 0;
         float moveZ = 0;
         // || -> or
@@ -21,5 +23,13 @@ public class Move : MonoBehaviour
         position.x = position.x + moveX * speed;
         position.z = position.z + moveZ * speed;
         transform.position = position;
+
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack01") == false)
+        {
+            if (moveX != 0 || moveZ != 0)
+                animator.Play("RunForwardBattle");
+            else
+                animator.Play("Idle_Battle");
+        }
     }
 }

@@ -248,6 +248,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 0.1
+  animator: {fileID: 2039075845}
 --- !u!4 &869090215
 Transform:
   m_ObjectHideFlags: 0
@@ -344,8 +345,8 @@ Camera:
     width: 1
     height: 1
   near clip plane: 0.3
-  far clip plane: 1000
-  field of view: 60
+  far clip plane: 24
+  field of view: 25.8
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -370,13 +371,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 9.4, z: 0.18}
+  m_LocalRotation: {x: 0.30963972, y: -0, z: -0, w: 0.950854}
+  m_LocalPosition: {x: 0, y: 10.1, z: -13.89}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 36.075, y: 0, z: 0}
 --- !u!1 &1237047691
 GameObject:
   m_ObjectHideFlags: 0
