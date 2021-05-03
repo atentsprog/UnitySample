@@ -20,8 +20,8 @@ public class Move : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) moveX = -1;
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) moveX = 1;
         Vector3 position = transform.position;
-        position.x = position.x + moveX * speed;
-        position.z = position.z + moveZ * speed;
+        position.x = position.x + moveX * speed * Time.deltaTime;
+        position.z = position.z + moveZ * speed * Time.deltaTime;
         transform.position = position;
 
         if (animator.GetCurrentAnimatorStateInfo(0).IsName("Attack01") == false)
