@@ -17,9 +17,10 @@ public class FireProjectile : MonoBehaviour
 
     private IEnumerator Start()
     {
-        while(true)
+        while (true)
         {
-            Instantiate(arrowGo, arrowSpawnPosition.position, transform.rotation);
+            StartCoroutine(OnFireArrow());
+            //Instantiate(arrowGo, arrowSpawnPosition.position, transform.rotation);
             yield return new WaitForSeconds(interval);
         }
     }
@@ -28,21 +29,21 @@ public class FireProjectile : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            Instantiate(arrowGo, arrowSpawnPosition.position, transform.rotation); 
+            StartCoroutine(OnFireArrow());  
         }
     }
 
-    //public float fireDelay = 0.2f;
+    public float fireDelay = 0.2f;
 
-//    private IEnumerator OnFireArrow()
-//    {
-//        어택엑션 진행
-//        animator.Play("Attack01", 0, 0);
+    private IEnumerator OnFireArrow()
+    {
+        //어택엑션 진행
+        animator.Play("Attack01", 0, 0);
 
-//        잠시 쉬었다가
-//        yield return new WaitForSeconds(fireDelay);
+        //잠시 쉬었다가
+        yield return new WaitForSeconds(fireDelay);
 
-//        애로우를 발사.
-//        Instantiate(arrowGo, arrowSpawnPosition.position, transform.rotation);
-//    }
+        //애로우를 발사.
+        Instantiate(arrowGo, arrowSpawnPosition.position, transform.rotation);
+    }
 }
