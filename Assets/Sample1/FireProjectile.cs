@@ -14,6 +14,18 @@ public class FireProjectile : MonoBehaviour
 
     public Animator animator;
 
+    public float fireInterval = 0.5f;
+
+    private IEnumerator Start()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(fireInterval);
+
+            StartCoroutine(OnFireArrow());
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
