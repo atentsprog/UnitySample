@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -128,6 +128,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1774625739149480, guid: 38efdaadbfe1d624bbee439cb02e7661, type: 3}
   m_PrefabInstance: {fileID: 1750675313}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &151670532 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95237074988894122, guid: 38efdaadbfe1d624bbee439cb02e7661, type: 3}
+  m_PrefabInstance: {fileID: 1750675313}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &151670534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,6 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab8f77afac2dd4c41bab186104e117b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 151670532}
+  dieDelay: 1
+  speed: 5
 --- !u!135 &151670535
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -383,6 +391,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 9ef625d01f79b4e4eb62fcdf032954ca, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 9ef625d01f79b4e4eb62fcdf032954ca, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -499,6 +511,7 @@ MonoBehaviour:
   arrowGo: {fileID: 993358629}
   arrowSpawnPosition: {fileID: 364390547}
   animator: {fileID: 1422124325}
+  fireInterval: 0.5
   fireDelay: 0.3
 --- !u!114 &740377299
 MonoBehaviour:
@@ -972,7 +985,7 @@ GameObject:
   - component: {fileID: 993358631}
   - component: {fileID: 993358633}
   - component: {fileID: 993358632}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
