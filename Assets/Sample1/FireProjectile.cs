@@ -13,26 +13,36 @@ public class FireProjectile : MonoBehaviour
     public Transform arrowSpawnPosition;
 
     public Animator animator;
+    public float interval = 0.5f;
+
+    private IEnumerator Start()
+    {
+        while(true)
+        {
+            Instantiate(arrowGo, arrowSpawnPosition.position, transform.rotation);
+            yield return new WaitForSeconds(interval);
+        }
+    }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            StartCoroutine(OnFireArrow());
+            Instantiate(arrowGo, arrowSpawnPosition.position, transform.rotation); 
         }
     }
 
-    public float fireDelay = 0.2f;
+    //public float fireDelay = 0.2f;
 
-    private IEnumerator OnFireArrow()
-    {
-        //어택엑션 진행
-        animator.Play("Attack01", 0, 0);
+//    private IEnumerator OnFireArrow()
+//    {
+//        어택엑션 진행
+//        animator.Play("Attack01", 0, 0);
 
-        // 잠시 쉬었다가
-        yield return new WaitForSeconds(fireDelay);
+//        잠시 쉬었다가
+//        yield return new WaitForSeconds(fireDelay);
 
-        //애로우를 발사.
-        Instantiate(arrowGo, arrowSpawnPosition.position, transform.rotation);
-    }
+//        애로우를 발사.
+//        Instantiate(arrowGo, arrowSpawnPosition.position, transform.rotation);
+//    }
 }
