@@ -14,8 +14,12 @@ public class Monster : MonoBehaviour
         StartCoroutine(OnDie());
     }
 
+    public AudioSource dieSound;
+    public float delayDieSound = 0.3f;
+
     public float dieDelay = 1.0f;
     public float speed = -5f;
+
 
     private IEnumerator OnDie()
     {
@@ -23,9 +27,18 @@ public class Monster : MonoBehaviour
 
         GetComponent<Collider>().enabled = false;
         enabled = false;
+
+        StartCoroutine(PlayDieSound());
+
         animator.Play("Die");
         yield return new WaitForSeconds(dieDelay);
         Destroy(gameObject);
+    }
+
+    private IEnumerator PlayDieSound()
+    {
+        yield return new WaitForSeconds(delayDieSound);
+        dieSound.Play();
     }
 
     private void Update()

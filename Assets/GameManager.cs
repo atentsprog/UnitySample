@@ -24,9 +24,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int addPoint)
     {
         score += addPoint;
-
         // UI¿¡ ¹Ý¿µ.
         scoreText.text = score.ToString();
     }
-
 }
