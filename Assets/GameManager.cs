@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         instance = this;
+
+        Debug.Log(120000.ToNumber());
+        Debug.Log(transform.GetPath());
     }
 
     internal void AddScore(int getPoint)
@@ -20,6 +23,6 @@ public class GameManager : MonoBehaviour
         score += getPoint;
 
         // UI에 숫자 갱신
-        textMesh.text = score.ToString();
+        textMesh.text = score.ToNumber();
     }
 }
