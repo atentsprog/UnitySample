@@ -1729,6 +1729,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Arrow
       objectReference: {fileID: 0}
+    - target: {fileID: 3225575834780082953, guid: 386bfcfdf0b2359428296b009e0c26a0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3225575834780082954, guid: 386bfcfdf0b2359428296b009e0c26a0, type: 3}
       propertyPath: m_RootOrder
       value: 5
