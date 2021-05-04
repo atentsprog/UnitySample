@@ -41,7 +41,12 @@ public class Spawner : MonoBehaviour
     private void SpawnMonster(Transform selected)
     {
         Debug.Log(selected.name);
-        Instantiate(monster, selected);
+
+        ////selected의 자식으로 selected위치에 selected와 같은 방향(회전;로테이션)으로 생성
+        //Instantiate(monster, selected);
+
+        //자식으로 생성하지 않으려면 아래 로직 사용
+        Instantiate(monster, selected.position, selected.rotation);
     }
 
     private Transform GetRandomPoint()
