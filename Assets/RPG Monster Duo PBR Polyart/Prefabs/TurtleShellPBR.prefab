@@ -781,6 +781,7 @@ GameObject:
   - component: {fileID: 95237074988894122}
   - component: {fileID: 151670535}
   - component: {fileID: 151670534}
+  - component: {fileID: 3557443286175354164}
   m_Layer: 7
   m_Name: TurtleShellPBR
   m_TagString: Untagged
@@ -851,6 +852,23 @@ MonoBehaviour:
   animator: {fileID: 95237074988894122}
   dieDelay: 1
   speed: 4
+--- !u!114 &3557443286175354164
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774625739149480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f5ded5ef5ba7c4a8f4c537f86eb9a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 10
+  OnEnableLog: 0
+  OnDisableLog: 0
+  OnDestroyLog: 0
+  StopOnLog: 0
 --- !u!1 &1822049695589022
 GameObject:
   m_ObjectHideFlags: 0

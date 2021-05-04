@@ -35,6 +35,7 @@ public class FireProjectile : MonoBehaviour
     }
 
     public float fireDelay = 0.2f;
+    public float destroyDelay = 3f;
 
     private IEnumerator OnFireArrow()
     {
