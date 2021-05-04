@@ -19,6 +19,8 @@ public class Monster : MonoBehaviour
 
     private IEnumerator OnDie()
     {
+        GameManager.instance.score += 100;
+
         GetComponent<Collider>().enabled = false;
         enabled = false;
         animator.Play("Die");

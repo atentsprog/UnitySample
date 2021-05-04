@@ -26,13 +26,6 @@ public class FireProjectile : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            StartCoroutine(OnFireArrow());
-        }
-    }
 
     public float fireDelay = 0.2f;
     public float destroyDelay = 3f;
