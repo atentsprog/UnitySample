@@ -9,7 +9,7 @@ public class Monster : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
+        //Debug.Log(other);
 
         StartCoroutine(OnDie());
     }
