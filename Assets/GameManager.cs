@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -18,4 +19,14 @@ public class GameManager : MonoBehaviour
         // 게임오브젝트가 씬에 나오면 바로실행된다.
         instance = this;
     }
+
+    public TextMeshProUGUI scoreText;
+    public void AddScore(int addPoint)
+    {
+        score += addPoint;
+
+        // UI에 반영.
+        scoreText.text = score.ToString();
+    }
+
 }
