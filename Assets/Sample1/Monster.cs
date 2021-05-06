@@ -9,7 +9,9 @@ public class Monster : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Debug.Log(other);
+        // 화살 오브젝트 파괴시킴
+        Destroy(other.gameObject);
+
 
         StartCoroutine(OnDie());
     }

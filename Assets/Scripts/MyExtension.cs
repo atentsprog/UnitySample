@@ -14,18 +14,11 @@ static public class MyExtension
         return $"{value:N0}";
     }
 
-    //static public string GetPath(this Transform t)
-    //{
-    //    string componentPath = t.name;
-    //    Transform tParent = t.parent;
-    //    while (tParent != null)
-    //    {
-    //        componentPath = string.Format("{0}/{1}", tParent.name, componentPath);
-    //        tParent = tParent.parent;
-    //    }
-    //    return componentPath;
-    //}
-
+    /// <summary>
+    /// 경로를 리턴하는 함수
+    /// </summary>
+    /// <param name="t"></param>
+    /// <returns></returns>
     static public string GetPath(this Transform t)
     {
         // 부모가 있으면 부모 경로와 경로 구분자를 넣는다.

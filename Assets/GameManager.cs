@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
     {
         score += addPoint;
         // UI에 반영.
-        scoreText.text = score.ToString();
+        // Score : 1,000;
+        scoreText.text = "Score : " + $"{score:N0}"; // 아래 줄과 같은 의미
+        scoreText.text = "Score : " + score.ToNumber(); // 확장함수 사용 편리함.
+
+        
     }
 }
