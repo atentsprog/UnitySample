@@ -15,6 +15,7 @@ public class Monster : MonoBehaviour
     private void Start()
     {
         currentHP = maxHP;
+        currentSpeed = originalSpeed;
         UpdateHP();
     }
 
@@ -50,7 +51,8 @@ public class Monster : MonoBehaviour
     public AudioSource audioSource;
     public float delayDieSound = 0.3f;
 
-    public float speed = -5f;
+    public float currentSpeed;
+    public float originalSpeed = 5f;
 
     public float attackedMoveStopTime = 0.4f;
     public AudioClip hitAudioClip;
@@ -68,12 +70,11 @@ public class Monster : MonoBehaviour
 
 
         // 피격 당했으니깐 전진하던걸 잠시 멈추자.
-        float originalSpeed = speed;
-        speed = 0;
+        currentSpeed = 0;
         yield return new WaitForSeconds(attackedMoveStopTime);
 
         // 다시 이동.
-        speed = originalSpeed;// 원래스피드.
+        currentSpeed = originalSpeed;// 원래스피드.
     }
 
 
@@ -104,6 +105,6 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
-        transform.Translate(0, 0, speed * Time.deltaTime);
+        transform.Translate(0, 0, currentSpeed * Time.deltaTime);
     }
 }
