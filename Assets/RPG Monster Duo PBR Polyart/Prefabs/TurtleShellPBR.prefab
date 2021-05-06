@@ -803,8 +803,8 @@ Transform:
   m_Children:
   - {fileID: 4968209632078062}
   - {fileID: 4148951095833812}
+  - {fileID: 6492771197813686470}
   - {fileID: 8187081304165775514}
-  - {fileID: 4414667348119602085}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -853,7 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 95237074988894122}
-  hpBar: {fileID: 4414667348119602085}
+  hpBar: {fileID: 6492771197813686470}
   hpText: {fileID: 9093678211247162707}
   currentHP: 0
   maxHP: 3
@@ -1251,7 +1251,7 @@ Transform:
   m_Father: {fileID: 4773820762583288}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1801670711860432744
+--- !u!1 &1407880170205843726
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1259,77 +1259,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4414667348119602085}
+  - component: {fileID: 7394882255091985042}
+  - component: {fileID: 8039069322095401449}
+  - component: {fileID: 4398641809814891554}
+  - component: {fileID: 2584521871540954801}
   m_Layer: 7
-  m_Name: HpBar
+  m_Name: HpChild
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4414667348119602085
+--- !u!4 &7394882255091985042
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1801670711860432744}
-  m_LocalRotation: {x: 0.5185672, y: -0, z: -0, w: 0.85503685}
-  m_LocalPosition: {x: 0.5, y: 0.81, z: -0.42}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1495057599908872046}
-  m_Father: {fileID: 4906828391645816}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 62.472, y: 0, z: 0}
---- !u!1 &4253359512339761845
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1495057599908872046}
-  - component: {fileID: 5036494172280556840}
-  - component: {fileID: 926337886096078364}
-  - component: {fileID: 3382552587277141907}
-  m_Layer: 7
-  m_Name: HpBar
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1495057599908872046
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4253359512339761845}
+  m_GameObject: {fileID: 1407880170205843726}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.559, y: 0, z: 0}
-  m_LocalScale: {x: 0.10939, y: 0.10939001, z: 0.012236366}
+  m_LocalPosition: {x: -0.77, y: 0, z: 0}
+  m_LocalScale: {x: 0.15, y: 0.13630112, z: 0.023520872}
   m_Children: []
-  m_Father: {fileID: 4414667348119602085}
+  m_Father: {fileID: 6492771197813686470}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 62.472, y: 0, z: 0}
---- !u!33 &5036494172280556840
+  m_LocalEulerAnglesHint: {x: 33.753, y: 0, z: 0}
+--- !u!33 &8039069322095401449
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4253359512339761845}
+  m_GameObject: {fileID: 1407880170205843726}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &926337886096078364
+--- !u!23 &4398641809814891554
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4253359512339761845}
+  m_GameObject: {fileID: 1407880170205843726}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -1342,7 +1311,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e90360d520cedd547b91a3a90293c587, type: 2}
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1364,13 +1333,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3382552587277141907
+--- !u!64 &2584521871540954801
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4253359512339761845}
+  m_GameObject: {fileID: 1407880170205843726}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
@@ -1378,6 +1347,37 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2866485684162312892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6492771197813686470}
+  m_Layer: 7
+  m_Name: HpParent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6492771197813686470
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2866485684162312892}
+  m_LocalRotation: {x: 0.290307, y: -0, z: -0, w: 0.9569336}
+  m_LocalPosition: {x: 0.67, y: 1.12, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7394882255091985042}
+  m_Father: {fileID: 4906828391645816}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7534296323042850073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1408,7 +1408,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4906828391645816}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
