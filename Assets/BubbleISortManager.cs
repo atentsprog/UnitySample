@@ -65,9 +65,13 @@ public class BubbleISortManager : MonoBehaviour
                 var leftBox = items[leftIndex];
                 var rightBox = items[rightIndex];
 
-                //검사하는 박스 색 변경
-                leftBox.SetColor(Color.yellow);
-                rightBox.SetColor(Color.red);
+                // 검사하는 박스 색 변경 -> 노란색으로 변경
+                // 위치 교화 해야하는건 빨간색으로 표시.
+                // 위치 교환 안해도 되는건 녹색으로 표시.
+                // 위치 이동 완료후 기본색(하얀색)으로 표시.
+
+                List<BubbleSortItem> leftAndRightbox = new List<BubbleSortItem>{ leftBox, rightBox };
+                leftAndRightbox.ForEach(x => x.SetColor(Color.yellow));
 
                 int leftNumber = leftBox.Number;
                 int rightNumber = rightBox.Number;
@@ -76,14 +80,20 @@ public class BubbleISortManager : MonoBehaviour
 
                 if (leftNumber > rightNumber)
                 {
+                    leftAndRightbox.ForEach(x => x.SetColor(Color.red));
+
                     infoText = $"{leftIndex}와 {rightIndex} 위치 교환";
 
                     // 실제 위치 이동.
                     yield return Swap(x, leftBox, rightBox);
                 }
+                else
+                {
+                    leftAndRightbox.ForEach(x => x.SetColor(Color.green));
+                }
 
-                leftBox.SetColor(Color.white);
-                rightBox.SetColor(Color.white);
+                yield return new WaitForSeconds(simulationSpeed);
+                leftAndRightbox.ForEach(x => x.SetColor(Color.white));
 
                 yield return new WaitForSeconds(simulationSpeed);
             }
