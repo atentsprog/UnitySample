@@ -10,7 +10,7 @@ public class BubbleISortManager : MonoBehaviour
     public BubbleSortItem item;
     public float widthOffset = 110;
     public float simulationSpeed = 0.2f;
-    public List<int> intArray = new List<int>{ 1, 5, -1, 4, 0 };
+    public List<int> intList = new List<int>{ 1, 5, -1, 4, 0 };
 
     private void Start()
     {
@@ -19,11 +19,6 @@ public class BubbleISortManager : MonoBehaviour
 
     private void SortStart()
     {
-        // 기존 리소스 초기화.
-        // 기존 게임 오브젝트 파괴
-        items.ForEach(x => Destroy(x.gameObject));
-        items.Clear();
-
         StartCoroutine(SortStartCo());
     }
 
@@ -33,19 +28,8 @@ public class BubbleISortManager : MonoBehaviour
         item.gameObject.SetActive(false);
 
 
-        for (int i = 0; i < intArray.Count; i++)
-        {
-            int number = intArray[i];
-            Vector3 pos = transform.position;
-            pos.x += widthOffset * i;
-            var newItem = Instantiate(item, pos, Quaternion.identity);
-            newItem.gameObject.SetActive(true);
-            newItem.Number = number;
-            items.Add(newItem);
-        }
-
-        string log = intArray.Select(x => x.ToString())
-            .Aggregate((x1, x2 )=> { return $"{x1}, {x2}"; });
+        // 기존 게임 오브젝트 파괴
+        string log = MakeNumberBoxes();
 
         yield return StartCoroutine(LogAndWaitCo($"{log}에 대해서 정렬 시작합니다."));
 
@@ -70,7 +54,7 @@ public class BubbleISortManager : MonoBehaviour
                 // 위치 교환 안해도 되는건 녹색으로 표시.
                 // 위치 이동 완료후 기본색(하얀색)으로 표시.
 
-                List<BubbleSortItem> leftAndRightbox = new List<BubbleSortItem>{ leftBox, rightBox };
+                List<BubbleSortItem> leftAndRightbox = new List<BubbleSortItem> { leftBox, rightBox };
                 leftAndRightbox.ForEach(x => x.SetColor(Color.yellow));
 
                 int leftNumber = leftBox.Number;
@@ -100,6 +84,27 @@ public class BubbleISortManager : MonoBehaviour
 
             yield return StartCoroutine(LogAndWaitCo($"턴 {turn + 1} 종료"));
         }
+    }
+
+    private string MakeNumberBoxes()
+    {
+        items.ForEach(x => Destroy(x.gameObject));
+        items.Clear();
+
+        for (int i = 0; i < intList.Count; i++)
+        {
+            int number = intList[i];
+            Vector3 pos = transform.position;
+            pos.x += widthOffset * i;
+            var newItem = Instantiate(item, pos, Quaternion.identity);
+            newItem.gameObject.SetActive(true);
+            newItem.Number = number;
+            items.Add(newItem);
+        }
+
+        string log = intList.Select(x => x.ToString())
+            .Aggregate((x1, x2) => { return $"{x1}, {x2}"; });
+        return log;
     }
 
     private IEnumerator LogAndWaitCo(string log)
@@ -136,15 +141,30 @@ public class BubbleISortManager : MonoBehaviour
         // Make a background box
         GUI.Box(new Rect(10, 10, Screen.width - 20, 90), infoText);
 
-        if (GUI.Button(new Rect(20, 40, 80, 20), "시작"))
+        if (GUI.Button(new Rect(20, 40, 200, 20), "시작"))
         {
             Debug.Log("시작");
             SortStart();
         }
 
-        //if (GUI.Button(new Rect(20, 70, 80, 20), "단계별 진행."))
-        //{
-        //    Debug.Log("단계별 진행");
-        //}
+        if (GUI.Button(new Rect(20, 70, 200, 20), "랜덤 번호 지정"))
+        {
+            //Debug.Log("랜덤 번호 지정");
+            SetRandomNumber();
+        }
+    }
+
+    private void SetRandomNumber()
+    {
+        int min = 1;
+        int max = intList.Count + 1;
+        for (int i = 0; i < intList.Count; i++)
+        {
+            intList[i] = UnityEngine.Random.Range(min, max);
+        }
+
+        // 텍스트 정보 표시.
+        // 박스 새로 만들기.
+        infoText = MakeNumberBoxes() + "로 숫자 지정했습니다";
     }
 }
