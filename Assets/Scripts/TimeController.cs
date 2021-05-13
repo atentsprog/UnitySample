@@ -24,6 +24,11 @@ public class TimeController : MonoBehaviour
         // x키 누르면 타임 스케일 정속도, 정속도일땐 0이 되도록(0/1 토글되도록)
         if (Input.GetKeyDown(KeyCode.X))
         {
+            Time.timeScale = 1;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
             if (Time.timeScale == 1)
                 Time.timeScale = 0;
             else

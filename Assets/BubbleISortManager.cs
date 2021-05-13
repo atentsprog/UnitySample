@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using DG.Tweening;
 
 public class BubbleISortManager : MonoBehaviour
 {
@@ -17,9 +18,13 @@ public class BubbleISortManager : MonoBehaviour
         SortStart();
     }
 
+    Coroutine sortStartCoHandle;
     private void SortStart()
     {
-        StartCoroutine(SortStartCo());
+        if (sortStartCoHandle != null)
+            StopCoroutine(sortStartCoHandle);
+
+        sortStartCoHandle = StartCoroutine(SortStartCo());
     }
 
     List<BubbleSortItem> items = new List<BubbleSortItem>();
@@ -37,11 +42,11 @@ public class BubbleISortManager : MonoBehaviour
         {
             int fixCount = turn;
             int checkLength = items.Count - fixCount;
-            checkLength = checkLength - 1;// 오른쪽 왼쪽을 한쌍으로 검사하므로 최대길이 -1까지만 검사하면 된다
+            int lastBoxIndex = checkLength - 1;// 오른쪽 왼쪽을 한쌍으로 검사하므로 최대길이 -1까지만 검사하면 된다
 
             yield return StartCoroutine(LogAndWaitCo($"턴 {turn + 1} 시작"));
 
-            for (int x = 0; x < checkLength; x++)
+            for (int x = 0; x < lastBoxIndex; x++)
             {
                 int leftIndex = x;
                 int rightIndex = x + 1;
@@ -82,8 +87,13 @@ public class BubbleISortManager : MonoBehaviour
                 yield return new WaitForSeconds(simulationSpeed);
             }
 
+            var fixBox = items[lastBoxIndex];
+            fixBox.SetColor(Color.gray);
+
             yield return StartCoroutine(LogAndWaitCo($"턴 {turn + 1} 종료"));
         }
+
+        items.ForEach(x => x.transform.DOPunchScale(x.transform.localScale, 0.5f));
     }
 
     private string MakeNumberBoxes()
@@ -112,28 +122,23 @@ public class BubbleISortManager : MonoBehaviour
         infoText = log;
         yield return new WaitForSeconds(simulationSpeed);
     }
-
+    public float tweenTime = 1f;
+    public Ease easeType = Ease.OutExpo;
     IEnumerator Swap(int index, BubbleSortItem leftBox, BubbleSortItem rightBox)
     {
         int leftIndex = index;
         int rightIndex = index + 1;
 
-        var tempPos = leftBox.transform.position;
-        leftBox.transform.position = rightBox.transform.position;
-        rightBox.transform.position = tempPos;
-        yield return null; // todo: 부드럽게 애니메이션 시키자.
-
-
+        var leftPos = leftBox.transform.position;
+        var rightPos = rightBox.transform.position;
+        leftBox.transform.DOMove(rightPos, tweenTime).SetEase(easeType);
+        yield return rightBox.transform.DOMove(leftPos, tweenTime).SetEase(easeType).WaitForCompletion();
+       
         var tempBox = items[leftIndex];
         items[leftIndex] = items[rightIndex];
         items[rightIndex] = tempBox;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
-            Time.timeScale = Time.timeScale == 0 ? 1 : 0;
-    }
 
     string infoText;
     private void OnGUI()
