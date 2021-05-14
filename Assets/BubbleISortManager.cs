@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,18 +33,18 @@ public class BubbleISortManager : MonoBehaviour
         item.gameObject.SetActive(false);
 
 
-        // ±âÁ¸ °ÔÀÓ ¿ÀºêÁ§Æ® ÆÄ±«
+        // ê¸°ì¡´ ê²Œì„ ì˜¤ë¸Œì íŠ¸ íŒŒê´´
         string log = MakeNumberBoxes();
 
-        yield return StartCoroutine(LogAndWaitCo($"{log}¿¡ ´ëÇØ¼­ Á¤·Ä ½ÃÀÛÇÕ´Ï´Ù."));
+        yield return StartCoroutine(LogAndWaitCo($"{log}ì— ëŒ€í•´ì„œ ì •ë ¬ ì‹œì‘í•©ë‹ˆë‹¤."));
 
         for (int turn = 0; turn < items.Count; turn++)
         {
             int fixCount = turn;
             int checkLength = items.Count - fixCount;
-            int lastBoxIndex = checkLength - 1;// ¿À¸¥ÂÊ ¿ŞÂÊÀ» ÇÑ½ÖÀ¸·Î °Ë»çÇÏ¹Ç·Î ÃÖ´ë±æÀÌ -1±îÁö¸¸ °Ë»çÇÏ¸é µÈ´Ù
+            int lastBoxIndex = checkLength - 1;// ì˜¤ë¥¸ìª½ ì™¼ìª½ì„ í•œìŒìœ¼ë¡œ ê²€ì‚¬í•˜ë¯€ë¡œ ìµœëŒ€ê¸¸ì´ -1ê¹Œì§€ë§Œ ê²€ì‚¬í•˜ë©´ ëœë‹¤
 
-            yield return StartCoroutine(LogAndWaitCo($"ÅÏ {turn + 1} ½ÃÀÛ"));
+            yield return StartCoroutine(LogAndWaitCo($"í„´ {turn + 1} ì‹œì‘"));
 
             for (int x = 0; x < lastBoxIndex; x++)
             {
@@ -54,10 +54,10 @@ public class BubbleISortManager : MonoBehaviour
                 var leftBox = items[leftIndex];
                 var rightBox = items[rightIndex];
 
-                // °Ë»çÇÏ´Â ¹Ú½º »ö º¯°æ -> ³ë¶õ»öÀ¸·Î º¯°æ
-                // À§Ä¡ ±³È­ ÇØ¾ßÇÏ´Â°Ç »¡°£»öÀ¸·Î Ç¥½Ã.
-                // À§Ä¡ ±³È¯ ¾ÈÇØµµ µÇ´Â°Ç ³ì»öÀ¸·Î Ç¥½Ã.
-                // À§Ä¡ ÀÌµ¿ ¿Ï·áÈÄ ±âº»»ö(ÇÏ¾á»ö)À¸·Î Ç¥½Ã.
+                // ê²€ì‚¬í•˜ëŠ” ë°•ìŠ¤ ìƒ‰ ë³€ê²½ -> ë…¸ë€ìƒ‰ìœ¼ë¡œ ë³€ê²½
+                // ìœ„ì¹˜ êµí™” í•´ì•¼í•˜ëŠ”ê±´ ë¹¨ê°„ìƒ‰ìœ¼ë¡œ í‘œì‹œ.
+                // ìœ„ì¹˜ êµí™˜ ì•ˆí•´ë„ ë˜ëŠ”ê±´ ë…¹ìƒ‰ìœ¼ë¡œ í‘œì‹œ.
+                // ìœ„ì¹˜ ì´ë™ ì™„ë£Œí›„ ê¸°ë³¸ìƒ‰(í•˜ì–€ìƒ‰)ìœ¼ë¡œ í‘œì‹œ.
 
                 List<BubbleSortItem> leftAndRightbox = new List<BubbleSortItem> { leftBox, rightBox };
                 leftAndRightbox.ForEach(x => x.SetColor(Color.yellow));
@@ -65,15 +65,15 @@ public class BubbleISortManager : MonoBehaviour
                 int leftNumber = leftBox.Number;
                 int rightNumber = rightBox.Number;
 
-                yield return StartCoroutine(LogAndWaitCo($"{leftIndex}¿Í {rightIndex}ºñ±³"));
+                yield return StartCoroutine(LogAndWaitCo($"{leftIndex}ì™€ {rightIndex}ë¹„êµ"));
 
                 if (leftNumber > rightNumber)
                 {
                     leftAndRightbox.ForEach(x => x.SetColor(Color.red));
 
-                    infoText = $"{leftIndex}¿Í {rightIndex} À§Ä¡ ±³È¯";
+                    infoText = $"{leftIndex}ì™€ {rightIndex} ìœ„ì¹˜ êµí™˜";
 
-                    // ½ÇÁ¦ À§Ä¡ ÀÌµ¿.
+                    // ì‹¤ì œ ìœ„ì¹˜ ì´ë™.
                     yield return Swap(x, leftBox, rightBox);
                 }
                 else
@@ -90,7 +90,7 @@ public class BubbleISortManager : MonoBehaviour
             var fixBox = items[lastBoxIndex];
             fixBox.SetColor(Color.gray);
 
-            yield return StartCoroutine(LogAndWaitCo($"ÅÏ {turn + 1} Á¾·á"));
+            yield return StartCoroutine(LogAndWaitCo($"í„´ {turn + 1} ì¢…ë£Œ"));
         }
 
         items.ForEach(x => x.transform.DOPunchScale(x.transform.localScale, 0.5f));
@@ -146,15 +146,15 @@ public class BubbleISortManager : MonoBehaviour
         // Make a background box
         GUI.Box(new Rect(10, 10, Screen.width - 20, 90), infoText);
 
-        if (GUI.Button(new Rect(20, 40, 200, 20), "½ÃÀÛ"))
+        if (GUI.Button(new Rect(20, 40, 200, 20), "ì‹œì‘"))
         {
-            Debug.Log("½ÃÀÛ");
+            Debug.Log("ì‹œì‘");
             SortStart();
         }
 
-        if (GUI.Button(new Rect(20, 70, 200, 20), "·£´ı ¹øÈ£ ÁöÁ¤"))
+        if (GUI.Button(new Rect(20, 70, 200, 20), "ëœë¤ ë²ˆí˜¸ ì§€ì •"))
         {
-            //Debug.Log("·£´ı ¹øÈ£ ÁöÁ¤");
+            //Debug.Log("ëœë¤ ë²ˆí˜¸ ì§€ì •");
             SetRandomNumber();
         }
     }
@@ -168,8 +168,8 @@ public class BubbleISortManager : MonoBehaviour
             intList[i] = UnityEngine.Random.Range(min, max);
         }
 
-        // ÅØ½ºÆ® Á¤º¸ Ç¥½Ã.
-        // ¹Ú½º »õ·Î ¸¸µé±â.
-        infoText = MakeNumberBoxes() + "·Î ¼ıÀÚ ÁöÁ¤Çß½À´Ï´Ù";
+        // í…ìŠ¤íŠ¸ ì •ë³´ í‘œì‹œ.
+        // ë°•ìŠ¤ ìƒˆë¡œ ë§Œë“¤ê¸°.
+        infoText = MakeNumberBoxes() + "ë¡œ ìˆ«ì ì§€ì •í–ˆìŠµë‹ˆë‹¤";
     }
 }

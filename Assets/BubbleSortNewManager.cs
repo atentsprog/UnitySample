@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,8 +12,8 @@ public class BubbleSortNewManager : MonoBehaviour
     public List<BubbleSortNewItem> cubes;
     IEnumerator Start()
     {
-        //intArray <- ÀÌ¿ëÇØ¼­ ¹Ú½º¸¦ ¸¸µéÀÚ.
-        //item + À§Ä¡°ª ´õÇÑ°÷¿¡ »ı¼ºÇÏÀÚ.
+        //intArray <- ì´ìš©í•´ì„œ ë°•ìŠ¤ë¥¼ ë§Œë“¤ì.
+        //item + ìœ„ì¹˜ê°’ ë”í•œê³³ì— ìƒì„±í•˜ì.
         cube.gameObject.SetActive(false);
         for (int i = 0; i < intArray.Count; i++)
         {
@@ -30,7 +30,7 @@ public class BubbleSortNewManager : MonoBehaviour
         {
             int fixCount = turn;
             int checkLength = intArray.Count - fixCount;
-            checkLength = checkLength - 1;// ¿À¸¥ÂÊ ¿ŞÂÊÀ» ÇÑ½ÖÀ¸·Î °Ë»çÇÏ¹Ç·Î ÃÖ´ë±æÀÌ -1±îÁö¸¸ °Ë»çÇÏ¸é µÈ´Ù
+            checkLength = checkLength - 1;// ì˜¤ë¥¸ìª½ ì™¼ìª½ì„ í•œìŒìœ¼ë¡œ ê²€ì‚¬í•˜ë¯€ë¡œ ìµœëŒ€ê¸¸ì´ -1ê¹Œì§€ë§Œ ê²€ì‚¬í•˜ë©´ ëœë‹¤
 
             for (int x = 0; x < checkLength; x++)
             {
@@ -38,16 +38,16 @@ public class BubbleSortNewManager : MonoBehaviour
                 int upNumber = intArray[x + 1];
                 if (downNumber > upNumber)
                 {
-                    //intArray¿¡ ÀÖ´Â ¼ıÀÚ ¹Ù²Ù±â.
+                    //intArrayì— ìˆëŠ” ìˆ«ì ë°”ê¾¸ê¸°.
                     Swap(x, intArray);
 
-                    //¹Ú½ºÀÇ À§Ä¡ ¹Ù²Ù±â
+                    //ë°•ìŠ¤ì˜ ìœ„ì¹˜ ë°”ê¾¸ê¸°
                     var downCube = cubes[x];
                     var upCube = cubes[x + 1];
                     var downPosition = downCube.transform.position;
                     var upPosition = upCube.transform.position;
 
-                    //cubes¹Ú½ºÁ¤º¸µµ ½º¿ÒÇÏÀÚ.
+                    //cubesë°•ìŠ¤ì •ë³´ë„ ìŠ¤ì™‘í•˜ì.
                     cubes[x] = upCube;
                     cubes[x + 1] = downCube;
 

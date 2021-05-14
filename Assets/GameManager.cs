@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -8,15 +8,15 @@ public class GameManager : MonoBehaviour
     public int score;
 
     /// <summary>
-    /// ½Ì±ÛÅÏ Å¬·¡½º
+    /// ì‹±ê¸€í„´ í´ë˜ìŠ¤
     /// </summary>
     static public GameManager instance;
 
     private void Awake()
     {
-        // ½ºÅ¸Æ® ÇÔ¼ö¶û Â÷ÀÌÁ¡
-        // ½ÇÇàµÇ´Â ¼ø¼­°¡ ´õ ºü¸£´Ù.
-        // °ÔÀÓ¿ÀºêÁ§Æ®°¡ ¾À¿¡ ³ª¿À¸é ¹Ù·Î½ÇÇàµÈ´Ù.
+        // ìŠ¤íƒ€íŠ¸ í•¨ìˆ˜ë‘ ì°¨ì´ì 
+        // ì‹¤í–‰ë˜ëŠ” ìˆœì„œê°€ ë” ë¹ ë¥´ë‹¤.
+        // ê²Œì„ì˜¤ë¸Œì íŠ¸ê°€ ì”¬ì— ë‚˜ì˜¤ë©´ ë°”ë¡œì‹¤í–‰ëœë‹¤.
         instance = this;
     }
 
@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
     public void AddScore(int addPoint)
     {
         score += addPoint;
-        // UI¿¡ ¹İ¿µ.
+        // UIì— ë°˜ì˜.
         // Score : 1,000;
-        scoreText.text = "Score : " + $"{score:N0}"; // ¾Æ·¡ ÁÙ°ú °°Àº ÀÇ¹Ì
-        scoreText.text = "Score : " + score.ToNumber(); // È®ÀåÇÔ¼ö »ç¿ë Æí¸®ÇÔ.
+        scoreText.text = "Score : " + $"{score:N0}"; // ì•„ë˜ ì¤„ê³¼ ê°™ì€ ì˜ë¯¸
+        scoreText.text = "Score : " + score.ToNumber(); // í™•ì¥í•¨ìˆ˜ ì‚¬ìš© í¸ë¦¬í•¨.
 
         
     }

@@ -1,4 +1,4 @@
-using DG.Tweening;
+ï»¿using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class TweenMove : MonoBehaviour
 {
-    // Å¥ºê¿¡ ´Ş¸° ½ºÅ©¸³Æ®
-    // ½ºÇÇ¾î À§Ä¡·Î ÀÌµ¿½ÃÅ°ÀÚ.
+    // íë¸Œì— ë‹¬ë¦° ìŠ¤í¬ë¦½íŠ¸
+    // ìŠ¤í”¼ì–´ ìœ„ì¹˜ë¡œ ì´ë™ì‹œí‚¤ì.
 
     public Transform target;
     public float duration = 0.5f;
@@ -52,17 +52,17 @@ public class TweenMove : MonoBehaviour
     {
         transform.localScale = originalScale;
 
-        // Å¸°Ù À§Ä¡·Î Æ®À§´×
+        // íƒ€ê²Ÿ ìœ„ì¹˜ë¡œ íŠ¸ìœ„ë‹
         //Vector3 targetScale = target.localScale;
         transform.DOScale(targetScale, duration).SetEase(ease);
     }
 
     private void TweenMoveFn()
     {
-        // ¿ø·¡ À§Ä¡·Î ÀÌµ¿.
+        // ì›ë˜ ìœ„ì¹˜ë¡œ ì´ë™.
         transform.position = originalPos;
 
-        // Å¸°Ù À§Ä¡·Î Æ®À§´×
+        // íƒ€ê²Ÿ ìœ„ì¹˜ë¡œ íŠ¸ìœ„ë‹
         Vector3 targetPos = target.position;
         transform.DOMove(targetPos, duration).SetEase(ease);
     }
