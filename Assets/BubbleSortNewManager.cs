@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BubbleSortNewManager : MonoBehaviour
 {
@@ -111,6 +112,26 @@ public class BubbleSortNewManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
             StartSort();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            // 랜덤 하게 숫자 할당.
+            //intArray<- 여기 있는 숫자를 랜덤하게 바꾸자
+            // 1)[완료]  intArray에 있는 갯수와 같은 갯수로 만들자.
+            // 2) -intArray.Count ~ intArray.Count;
+            for (int i = 0; i < intArray.Count; i++)
+            {
+                int randomInt;
+
+                // C#에 있는 기본 랜덤함수
+                //System.Random consoleRandom = new System.Random();
+                //randomInt = consoleRandom.Next(-intArray.Count, intArray.Count);
+
+                // 유니티에 있는 랜덤 함수.
+                randomInt = UnityEngine.Random.Range(-intArray.Count, intArray.Count);
+                intArray[i] = randomInt;
+            }
         }
     }
 
