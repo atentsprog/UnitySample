@@ -11,8 +11,15 @@ public class BubbleSortNewManager : MonoBehaviour
 
     public List<int> intArray;
     public List<BubbleSortNewItem> cubes;
-    IEnumerator Start()
+    private Coroutine sortCoHandle;
+
+    void Start()
     {
+        StartSort();
+    }
+
+    IEnumerator SortCo()
+    { 
         //intArray <- 이용해서 박스를 만들자.
         //item + 위치값 더한곳에 생성하자.
         cube.gameObject.SetActive(false);
@@ -103,10 +110,21 @@ public class BubbleSortNewManager : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            // 기존에 있던거를 뭐춰야한다. <- 구현안하고
-
-            // 다시 소트 시작.
-            StartCoroutine(Start());
+            StartSort();
         }
+    }
+
+    private void StartSort()
+    {
+        // 기존에 있던거를 뭐춰야한다. <- 구현안하고
+        if(sortCoHandle != null)
+            StopCoroutine(sortCoHandle);
+
+        // 기존의 cube삭제
+        cubes.ForEach(x => Destroy(x.gameObject));
+        cubes.Clear();
+
+        // 다시 소트 시작.
+        sortCoHandle = StartCoroutine(SortCo());
     }
 }
