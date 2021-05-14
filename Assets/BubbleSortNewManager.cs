@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -40,16 +41,16 @@ public class BubbleSortNewManager : MonoBehaviour
                 // todo: 지금 체크 하고 있는거 노란색으로 표시.
                 var downCube = cubes[x];
                 var upCube = cubes[x + 1];
-                upCube.ChangeColor(Color.yellow);
-                downCube.ChangeColor(Color.yellow);
-                yield return new WaitForSeconds(0.5f);
-
+                yield return StartCoroutine(
+                    ChangeColorCo(upCube, downCube, Color.yellow));
+                
                 if (downNumber > upNumber)
                 {
                     // 빨간색 지정.
-                    upCube.ChangeColor(new Color(1, 0, 0)); // Color.red
-                    downCube.ChangeColor(new Color32(255, 0, 0, 0));
-                    yield return new WaitForSeconds(0.5f);
+                    yield return StartCoroutine(
+                        ChangeColorCo(upCube, downCube, Color.red)); 
+                    //upCube.ChangeColor(new Color(1, 0, 0)); // Color.red
+                    //downCube.ChangeColor(new Color32(255, 0, 0, 0));
 
                     //intArray에 있는 숫자 바꾸기.
                     Swap(x, intArray);
@@ -68,14 +69,12 @@ public class BubbleSortNewManager : MonoBehaviour
                 }
                 else
                 {
-                    upCube.ChangeColor(Color.green);
-                    downCube.ChangeColor(Color.green);
-                    yield return new WaitForSeconds(0.5f);
+                    yield return StartCoroutine(
+                        ChangeColorCo(upCube, downCube, Color.green));
                 }
 
-                upCube.ChangeColor(Color.white);
-                downCube.ChangeColor(Color.white);
-                yield return new WaitForSeconds(0.5f);
+                yield return StartCoroutine
+                    (ChangeColorCo(upCube, downCube, Color.white));
             }
 
             // 고정된 블락을 회색으로 표시
@@ -90,6 +89,24 @@ public class BubbleSortNewManager : MonoBehaviour
             int temp = intArray[leftIndex];
             intArray[leftIndex] = intArray[rightIndex];
             intArray[rightIndex] = temp;
+        }
+    }
+
+    private IEnumerator ChangeColorCo(BubbleSortNewItem upCube, BubbleSortNewItem downCube, Color color)
+    {
+        upCube.ChangeColor(color);
+        downCube.ChangeColor(color);
+        yield return new WaitForSeconds(0.5f);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            // 기존에 있던거를 뭐춰야한다. <- 구현안하고
+
+            // 다시 소트 시작.
+            StartCoroutine(Start());
         }
     }
 }
