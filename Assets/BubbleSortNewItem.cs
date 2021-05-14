@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -11,5 +11,10 @@ public class BubbleSortNewItem : MonoBehaviour
     {
         this.number = number;
         GetComponentInChildren<TextMeshPro>().text = number.ToString();
+    }
+
+    internal void ChangeColor(Color color)
+    {
+        GetComponent<MeshRenderer>().material.color = color;
     }
 }

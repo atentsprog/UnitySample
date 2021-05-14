@@ -36,14 +36,25 @@ public class BubbleSortNewManager : MonoBehaviour
             {
                 int downNumber = intArray[x]; 
                 int upNumber = intArray[x + 1];
+
+                // todo: 지금 체크 하고 있는거 노란색으로 표시.
+                var downCube = cubes[x];
+                var upCube = cubes[x + 1];
+                upCube.ChangeColor(Color.yellow);
+                downCube.ChangeColor(Color.yellow);
+                yield return new WaitForSeconds(0.5f);
+
                 if (downNumber > upNumber)
                 {
+                    // 빨간색 지정.
+                    upCube.ChangeColor(new Color(1, 0, 0)); // Color.red
+                    downCube.ChangeColor(new Color32(255, 0, 0, 0));
+                    yield return new WaitForSeconds(0.5f);
+
                     //intArray에 있는 숫자 바꾸기.
                     Swap(x, intArray);
 
                     //박스의 위치 바꾸기
-                    var downCube = cubes[x];
-                    var upCube = cubes[x + 1];
                     var downPosition = downCube.transform.position;
                     var upPosition = upCube.transform.position;
 
@@ -55,7 +66,20 @@ public class BubbleSortNewManager : MonoBehaviour
                     upCube.transform.DOMove(downPosition, 0.5f).SetEase(Ease.InBounce);
                     yield return new WaitForSeconds(0.5f);
                 }
+                else
+                {
+                    upCube.ChangeColor(Color.green);
+                    downCube.ChangeColor(Color.green);
+                    yield return new WaitForSeconds(0.5f);
+                }
+
+                upCube.ChangeColor(Color.white);
+                downCube.ChangeColor(Color.white);
+                yield return new WaitForSeconds(0.5f);
             }
+
+            // 고정된 블락을 회색으로 표시
+            cubes[intArray.Count - 1 - turn].ChangeColor(Color.gray);
         }
 
         void Swap(int index, List<int> intArray)
