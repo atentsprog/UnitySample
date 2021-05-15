@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,27 +7,27 @@ public class Spawner : MonoBehaviour
     public List<Transform> points;
     public GameObject enemyGo;
 
-    public bool isPlaying = true; // Á¶°Ç¾Ë¾Æº¸±â ½±°Ô º¯¼ö·Î »¬°Ô¿ä
+    public bool isPlaying = true; // ì¡°ê±´ì•Œì•„ë³´ê¸° ì‰½ê²Œ ë³€ìˆ˜ë¡œ ëº„ê²Œìš”
     public float spawnDelay = 1f;
     void Start()
     {
-        //// ¸®½ºÆ® ¿ä¼Ò ÇÁ¸°Æ® ÇÏ±â ¹æ½Ä1
-        //Debug.LogWarning("¸®½ºÆ® ¿ä¼Ò ÇÁ¸°Æ® ÇÏ±â ¹æ½Ä1");
+        //// ë¦¬ìŠ¤íŠ¸ ìš”ì†Œ í”„ë¦°íŠ¸ í•˜ê¸° ë°©ì‹1
+        //Debug.LogWarning("ë¦¬ìŠ¤íŠ¸ ìš”ì†Œ í”„ë¦°íŠ¸ í•˜ê¸° ë°©ì‹1");
         //for (int i = 0; i < points.Count; i++)
         //{
         //    var item = points[i];
         //    Debug.Log(item);
         //}
 
-        //// ¸®½ºÆ® ¿ä¼Ò ÇÁ¸°Æ® ÇÏ±â ¹æ½Ä2
-        //Debug.LogWarning("¸®½ºÆ® ¿ä¼Ò ÇÁ¸°Æ® ÇÏ±â ¹æ½Ä2");
+        //// ë¦¬ìŠ¤íŠ¸ ìš”ì†Œ í”„ë¦°íŠ¸ í•˜ê¸° ë°©ì‹2
+        //Debug.LogWarning("ë¦¬ìŠ¤íŠ¸ ìš”ì†Œ í”„ë¦°íŠ¸ í•˜ê¸° ë°©ì‹2");
         //foreach (var item in points)
         //{
         //    Debug.Log(item);
         //}
 
-        //// ¸®½ºÆ® ¿ä¼Ò ÇÁ¸°Æ® ÇÏ±â ¹æ½Ä3
-        //Debug.LogWarning("¸®½ºÆ® ¿ä¼Ò ÇÁ¸°Æ® ÇÏ±â ¹æ½Ä3");
+        //// ë¦¬ìŠ¤íŠ¸ ìš”ì†Œ í”„ë¦°íŠ¸ í•˜ê¸° ë°©ì‹3
+        //Debug.LogWarning("ë¦¬ìŠ¤íŠ¸ ìš”ì†Œ í”„ë¦°íŠ¸ í•˜ê¸° ë°©ì‹3");
         //points.ForEach(x => Debug.Log(x));
 
         StartCoroutine( StartSpawn());
@@ -35,17 +35,17 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator StartSpawn()
     {
-        // °ÔÀÓÀÌ ³¡³¯¶§±îÁö ¹İº¹
+        // ê²Œì„ì´ ëë‚ ë•Œê¹Œì§€ ë°˜ë³µ
         while (isPlaying)
         {
-            // ·£´ıÇÑ À§Ä¡¿¡ ½ºÆù.
+            // ëœë¤í•œ ìœ„ì¹˜ì— ìŠ¤í°.
             int selectedIndex = Random.Range(0, points.Count); // 0 ~ 3
             //Debug.Log(points[selectedIndex]);
 
             var selectedTransform = points[selectedIndex];
             Instantiate(enemyGo, selectedTransform.position, selectedTransform.rotation);
 
-            // Àá½Ã ½¬±â
+            // ì ì‹œ ì‰¬ê¸°
             yield return new WaitForSeconds(spawnDelay);
         }
     }
