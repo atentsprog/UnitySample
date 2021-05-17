@@ -11,7 +11,6 @@ public class OnGUI_1 : MonoBehaviour
 	// 기준이 되는 해상도
 	public float width = 1024f;
 	public float height = 768f;
-
 	// 화면 확대 비율을 구하고, GUI에 적용한다.
 	void ChangeGuiScale()
 	{
