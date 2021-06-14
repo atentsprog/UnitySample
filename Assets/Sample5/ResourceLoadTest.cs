@@ -11,7 +11,7 @@ public class ResourceLoadTest : MonoBehaviour
         // 파일 이름 같을 경우 타입지정해서 구분 가능
         Object memoryObj = Resources.Load(readObjectName);
         //GameObject memoryObj = (GameObject)Resources.Load(readObjectName, typeof(GameObject));
-
+        
         GameObject memoryGo = (GameObject)memoryObj;
         GameObject sceneGo = Instantiate(memoryGo);
         sceneGo.name = "리소스에서 불러온" + memoryGo.name;
