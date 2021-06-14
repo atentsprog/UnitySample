@@ -7,6 +7,15 @@ public class Move : MonoBehaviour
     public float speed = 0.1f;
 
     public Animator animator;
+    public void Awake()
+    {
+        //Collider tr     = GetComponent<Collider>();
+        //Collider[] cols = GetComponents<Collider>();
+
+        //Animator ani1 = GetComponentInChildren<Animator>();
+        //Animator ani2 = GetComponentInChildren<Animator>(true);
+        //Transform[] ani3 = GetComponentsInChildren<Transform>(false);
+    }
 
     private void Update()
     {
