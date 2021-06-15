@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyTime: 4.48
-  OnEnableLog: 0
+  OnEnableLog: 1
   OnDisableLog: 0
   OnDestroyLog: 0
   StopOnLog: 0
