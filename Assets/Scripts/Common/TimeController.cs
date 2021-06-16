@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TimeController : MonoBehaviour
 {
-    // Update is called once per frame
     private void Update()
     {
         //Time.deltaTime 사양이 다른 컴퓨터에서도 동일한 결과를 만들기 위해서
@@ -21,18 +20,26 @@ public class TimeController : MonoBehaviour
             Time.timeScale = Time.timeScale * 2f;
         }
 
-        // x키 누르면 타임 스케일 정속도, 정속도일땐 0이 되도록(0/1 토글되도록)
+        // x누르면 항상 정속도
         if (Input.GetKeyDown(KeyCode.X))
         {
             Time.timeScale = 1;
         }
 
+        // 왼쪽 컨트롤키 누르면 타임 스케일 정속도, 정속도일땐 0이 되도록(0/1 토글되도록)
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (Time.timeScale == 1)
                 Time.timeScale = 0;
             else
                 Time.timeScale = 1;
+        }
+
+        // F1키 누르면 재시작( 타임 콘트롤과 관련 없으므로 비슷한 기능 모였을때 다른 클래스로 빼자)
+        if(Input.GetKeyDown(KeyCode.F1))
+        {
+            UnityEngine.SceneManagement.SceneManager.LoadScene(
+                UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
