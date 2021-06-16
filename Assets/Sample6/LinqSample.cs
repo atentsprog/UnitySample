@@ -10,14 +10,9 @@ using System.Linq;
 
 public class LinqSample : MonoBehaviour
 {
-    const string LEVEL = "LEVEL";
-    const string NAME = "NAME";
-    const string ATTRIBUTE = "ATTRIBUTE";
-
-
     enum EnumName
     {
-        슬라임,
+        슬라임 = 0, 
         가고일,
         골렘,
         코볼트,
@@ -71,6 +66,7 @@ public class LinqSample : MonoBehaviour
 
         attributeSortButton.AddListener(this, () => { SortFn(SortType.Attribute); });
         nameSortButton.AddListener(this, () => { SortFn(SortType.Name); });
+        //nameSortButton.AddListener(this, NameSortFn);
         levelSortButton.AddListener(this, () => { SortFn(SortType.Level); });
 
         filterButton.AddListener(this, FilterFn);
@@ -78,6 +74,10 @@ public class LinqSample : MonoBehaviour
 
         CreateData();  // 정보 생성
     }
+    //void NameSortFn()
+    //{
+    //    SortFn(SortType.Name);
+    //}
 
     private void CancelFn()
     {
@@ -90,15 +90,18 @@ public class LinqSample : MonoBehaviour
     {
         int minLevel = int.Parse(this.minLevel.text);
         int maxLevel = int.Parse(this.maxLevel.text);
-        filteredList = list.Where(x => x.level >= minLevel && x.level <= maxLevel
-        && x.attribute.ToString() == attributeDropdown.captionText.text).ToList();
+
+        filteredList = list
+            .Where(x => x.level >= minLevel && x.level <= maxLevel
+                && x.attribute.ToString() == attributeDropdown.captionText.text)
+            .ToList();
+
 
         UpdateText();
     }
 
     private void SortFn(SortType sortType)
     {
-        StringBuilder sb = new StringBuilder();
         switch (sortType)
         {
             case SortType.Level:
@@ -116,10 +119,36 @@ public class LinqSample : MonoBehaviour
 
     private void UpdateText()
     {
-        var showList = filteredList ?? list;
+        //var showList = filteredList ?? list;
+
+        List<Row> showList = null;
+        if (filteredList != null)
+            showList = filteredList;
+        else
+            showList = list;
+
+
+
+        //StringBuilder sb = new StringBuilder();
+        //showList.ForEach(x => sb.AppendLine(x.ToString()));
+        //tableText.text = sb.ToString();
+
+
         StringBuilder sb = new StringBuilder();
-        showList.ForEach(x => sb.AppendLine(x.ToString()));
+        foreach (var item in showList)
+        {
+            sb.AppendLine(item.ToString());
+        }
         tableText.text = sb.ToString();
+
+
+        string text = "";
+        for (int i = 0; i < showList.Count; i++)
+        {
+            text += showList[i].ToString();
+            text += "\n";
+        }
+        tableText.text = text;
     }
 
     enum SortType
@@ -135,7 +164,7 @@ public class LinqSample : MonoBehaviour
         public EnumAttribute attribute;
         public override string ToString()
         {
-            return $"{level,-3}{name,-8}{attribute,6}";
+            return $"{level,-3},\t{name,8},\t{attribute,4}";
         }
     }
     List<Row> list = new List<Row>();
