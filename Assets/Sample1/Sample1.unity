@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -875,7 +875,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 740377297}
-  - component: {fileID: 740377300}
+  - component: {fileID: 740377299}
   - component: {fileID: 740377298}
   - component: {fileID: 740377301}
   m_Layer: 6
@@ -907,7 +907,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740377296}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a7d4a59c03dba74492ca64ec14a9c34, type: 3}
   m_Name: 
@@ -918,7 +918,7 @@ MonoBehaviour:
   fireInterval: 0.5
   fireDelay: 0.3
   destroyDelay: 3
---- !u!114 &740377300
+--- !u!114 &740377299
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -930,7 +930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db0b30372e93954281399f836ddec7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 0.1
   animator: {fileID: 1422124325}
 --- !u!114 &740377301
 MonoBehaviour:
@@ -946,7 +946,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   animator: {fileID: 1422124325}
-  rotateLerp: 0.2
+  arrowGo: {fileID: 3225575834780082953, guid: 386bfcfdf0b2359428296b009e0c26a0, type: 3}
+  arrowSpawnPosition: {fileID: 364390547}
+  fireDelay: 0.3
+  clipInfos:
+  - state: 2
+    stateName: Idle_Battle
+    transitionDuration: 0
+  - state: 3
+    stateName: RunForwardBattle
+    transitionDuration: 0.1
+  - state: 1
+    stateName: Attack01
+    transitionDuration: 0
+  state: 0
 --- !u!1 &909827495
 GameObject:
   m_ObjectHideFlags: 0
@@ -1268,7 +1281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8422892626600285392, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8422892626600285394, guid: 214e08cd5e5d74c458e2a81b7ec2c84c, type: 3}
       propertyPath: m_Layer

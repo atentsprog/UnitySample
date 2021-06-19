@@ -33,7 +33,7 @@ public class FireProjectile : MonoBehaviour
     private IEnumerator OnFireArrow()
     {
         //어택엑션 진행
-        animator.Play("Attack01", 0, 0);
+        GetComponent<LookAtDirectionMove>().State = LookAtDirectionMove.StateType.Attack;
 
         // 잠시 쉬었다가
         yield return new WaitForSeconds(fireDelay);
