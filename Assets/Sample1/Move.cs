@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    public float speed = 0.1f;
+    public float speed = 3f;
 
     public Animator animator;
     public void Awake()
@@ -31,7 +31,7 @@ public class Move : MonoBehaviour
 
         Vector3 position = transform.position;
         position.x = position.x + move.x * speed * Time.deltaTime;
-        position.z = position.z + move.y * speed * Time.deltaTime;
+        position.z = position.z + move.z * speed * Time.deltaTime;
 
         move.Normalize();
         transform.position = position;
