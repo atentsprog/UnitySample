@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -953,12 +953,19 @@ MonoBehaviour:
   - state: 2
     stateName: Idle_Battle
     transitionDuration: 0
+    layerIndex: 0
   - state: 3
     stateName: RunForwardBattle
     transitionDuration: 0.1
+    layerIndex: 0
   - state: 1
     stateName: Attack01
     transitionDuration: 0
+    layerIndex: 0
+  - state: 4
+    stateName: jump
+    transitionDuration: 0
+    layerIndex: 1
   state: 0
 --- !u!1 &909827495
 GameObject:
@@ -1642,6 +1649,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84e194382e6764e4bab4adee3cf9ded5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1739378807 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1774625739149480, guid: 38efdaadbfe1d624bbee439cb02e7661, type: 3}
+  m_PrefabInstance: {fileID: 1750675313}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1739378808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1739378807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab8f77afac2dd4c41bab186104e117b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  hpBar: {fileID: 0}
+  hpText: {fileID: 0}
+  currentHP: 0
+  maxHP: 3
+  audioSource: {fileID: 0}
+  delayDieSound: 0.3
+  currentSpeed: 0
+  originalSpeed: 5
+  attackedMoveStopTime: 0.4
+  hitAudioClip: {fileID: 0}
+  dieAudioClip: {fileID: 0}
+  dieDelay: 1
+  hitDelay: 0.3
 --- !u!1001 &1750675313
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1705,7 +1743,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3557443286175354164, guid: 38efdaadbfe1d624bbee439cb02e7661, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 38efdaadbfe1d624bbee439cb02e7661, type: 3}
 --- !u!1 &1961170194
 GameObject:
@@ -1771,7 +1810,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1984658566}
-  - component: {fileID: 1984658565}
   - component: {fileID: 1984658567}
   m_Layer: 0
   m_Name: Manager
@@ -1780,18 +1818,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1984658565
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1984658564}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 89d5e222c773e9445bdbbeb333a3a8a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1984658566
 Transform:
   m_ObjectHideFlags: 0

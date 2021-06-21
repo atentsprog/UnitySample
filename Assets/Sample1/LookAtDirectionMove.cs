@@ -39,6 +39,11 @@ public class LookAtDirectionMove : MonoBehaviour
             StartCoroutine(OnFireArrowCo());
         }
 
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            State = StateType.Jump;
+        }
+
         if (State != StateType.Attack)
         {
             if (move != Vector3.zero)
@@ -75,6 +80,7 @@ public class LookAtDirectionMove : MonoBehaviour
         public StateType state;
         public string stateName;
         public float transitionDuration = 0.0f; // 0 ~ 1까지
+        public int layerIndex;
     }
 
     public List<AnimationClipInfo> clipInfos;
@@ -114,6 +120,7 @@ public class LookAtDirectionMove : MonoBehaviour
         Attack,
         Idle,
         Run,
+        Jump,
     }
     public StateType State
     {
@@ -126,7 +133,7 @@ public class LookAtDirectionMove : MonoBehaviour
             if(ClipInfoMap.ContainsKey(state))
             {
                 var animationClip = ClipInfoMap[state];
-                animator.CrossFade(animationClip.stateName, animationClip.transitionDuration);
+                animator.CrossFade(animationClip.stateName, animationClip.transitionDuration, animationClip.layerIndex);
             }
         }
         get { return state; }
