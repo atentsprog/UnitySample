@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 1631712468761423318}
   - component: {fileID: 1840712570633024151}
   - component: {fileID: 2645877748481815959}
-  - component: {fileID: -4747455584123130635}
   - component: {fileID: -8570135473560309197}
   m_Layer: 0
   m_Name: Missle
@@ -98,23 +97,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-4747455584123130635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4893738839378643074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02f5ded5ef5ba7c4a8f4c537f86eb9a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  destroyTime: 5
-  OnEnableLog: 0
-  OnDisableLog: 0
-  OnDestroyLog: 0
-  StopOnLog: 0
 --- !u!114 &-8570135473560309197
 MonoBehaviour:
   m_ObjectHideFlags: 0
