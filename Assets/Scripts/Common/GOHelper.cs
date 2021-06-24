@@ -15,16 +15,13 @@ public class GOHelper : MonoBehaviour
     public bool OnDestroyLog;
     public bool StopOnLog; // 로그 발생시 멈춤
 
-    // 업데이트 직전에
-    private void Start()
-    {
-        if (destroyTime > 0)
-            Destroy(gameObject, destroyTime);
-    }
 
     // 게임 오브젝트 활성화될때 
     private void OnEnable()
     {
+        if (destroyTime > 0)
+            ObjectPool.Destroy(gameObject, destroyTime);
+
         if (OnDestroyLog)
             WriteLog("OnEnable");
     }
