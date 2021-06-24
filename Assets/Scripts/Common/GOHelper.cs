@@ -20,7 +20,7 @@ public class GOHelper : MonoBehaviour
     private void OnEnable()
     {
         if (destroyTime > 0)
-            ObjectPool.Destroy(gameObject, destroyTime);
+            Destroy(gameObject, destroyTime);
 
         if (OnDestroyLog)
             WriteLog("OnEnable");

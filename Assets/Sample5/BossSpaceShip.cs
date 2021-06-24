@@ -25,7 +25,7 @@ public class BossSpaceShip : MonoBehaviour
                 eulerAngle += missleSpawnAxis * (startAngle + (angle * i));
 
             Quaternion lookRotation = Quaternion.Euler(eulerAngle);
-            MoveLocal moveLocal = ObjectPool.Instantiate(missleGo, transform.position, lookRotation);
+            MoveLocal moveLocal = Instantiate(missleGo, transform.position, lookRotation);
 
             moveLocal.moveAxis = missleMoveAxis;
         }
