@@ -29,7 +29,9 @@ public class ObjectPool : MonoBehaviour
         {
             newItem.SetActive(false);
             newItem.transform.parent = parent;
-            items.Add(newItem);
+
+            if (items.Find(x => x == newItem) == null)
+                items.Add(newItem);
         }
 
         public void Push(GameObject newItem)
