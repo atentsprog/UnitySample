@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 /* 
@@ -26,7 +27,7 @@ public class ObjectPool : MonoBehaviour
     {
 		public string name;
 		public GameObject origin;
-		public List<GameObject> items = new List<GameObject>();
+		public HashSet<GameObject> items = new HashSet<GameObject>();
 		Transform parent;
 
         public PoolItemInfo(GameObject go, int initCount, Transform parent)
@@ -37,23 +38,23 @@ public class ObjectPool : MonoBehaviour
 
 			for (int i = 0; i < initCount; i++)
             {
-                CreateNewItem(go);
+                CreateNewItem(go, insertPool:true, initActive:false);
             }
         }
 
-        private GameObject CreateNewItem(GameObject go, bool insertPool = true)
+		private GameObject CreateNewItem(GameObject go, bool insertPool = true, bool initActive = false)
         {
-			bool active = go.activeSelf;
+			bool goActive = go.activeSelf;
 			go.SetActive(false);
             var newGo = Object.Instantiate(go);
-			go.SetActive(active);
+			go.SetActive(goActive);
 			newGo.name = go.name;
 			if (insertPool)
 			{
 				newGo.transform.parent = parent;
 				items.Add(newGo);
 			}
-			newGo.SetActive(true);
+			newGo.SetActive(initActive);
 			return newGo;
 		}
 
@@ -61,11 +62,11 @@ public class ObjectPool : MonoBehaviour
         {
 			if (items.Count == 0)
             {
-				return CreateNewItem(origin, false);
+				return CreateNewItem(origin, insertPool: false, initActive: true);
 			}
 
-			var popItem = items[0];
-			items.RemoveAt(0);
+			var popItem = items.First();
+			items.Remove(popItem);
 
 			popItem.transform.parent = null;
 			popItem.SetActive(true);
@@ -84,7 +85,7 @@ public class ObjectPool : MonoBehaviour
 
 	private void DestroyGo(GameObject go)
 	{
-		var find = pool.Find(x => x.origin.name == go.name.Replace("(Clone)", string.Empty));
+		var find = pool.Find(x => x.items.Contains(go));
 		if (find == null)
 		{
 			find = new PoolItemInfo(go, 0, transform);
