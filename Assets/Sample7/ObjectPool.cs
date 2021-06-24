@@ -18,21 +18,23 @@ public class ObjectPool : MonoBehaviour
 
             for (int i = 0; i < initCount; i++)
             {
-                Push(original);
+                var newItem = Object.Instantiate(original);
+                newItem.name = original.name;
+
+                InsertPoolItem(newItem);
             }
         }
-        private void InsertPoolItem(GameObject original)
+
+        private void InsertPoolItem(GameObject newItem)
         {
-            var newItem = Object.Instantiate(original);
-            newItem.name = original.name;
             newItem.SetActive(false);
             newItem.transform.parent = parent;
             items.Add(newItem);
         }
 
-        public void Push(GameObject original)
+        public void Push(GameObject newItem)
         {
-            InsertPoolItem(original);
+            InsertPoolItem(newItem);
         }
 
         public GameObject Pop(GameObject original)
@@ -50,6 +52,11 @@ public class ObjectPool : MonoBehaviour
             items.Remove(result);
             result.transform.parent = null;
             result.SetActive(true);
+
+            result.transform.SetPositionAndRotation(
+                original.transform.position
+                , original.transform.rotation);
+
             return result;
         }
     }
