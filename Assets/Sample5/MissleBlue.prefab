@@ -126,8 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa4e0b80096ecbe419faf08f5876cb0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
-  acceleration: 1
+  speed: 5
+  acceleration: 0
   accelerationCurve:
     serializedVersion: 2
     m_Curve:
@@ -152,4 +152,4 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  guidedMissileAngle: 0.02
+  guidedMissileAngle: 0.01
