@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Smaple8.Collider
+namespace Sample8.Collider
 {
     /// <summary>
     /// 물리계열로 충돌 체크 하려면 충돌 콜라이더 켜져 있는 프레임이 3프레임 이상이면 안됨

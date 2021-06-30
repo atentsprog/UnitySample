@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 1631712468761423318}
   - component: {fileID: 1840712570633024151}
   - component: {fileID: 2645877748481815959}
-  - component: {fileID: -8570135473560309197}
   - component: {fileID: -5351772299001585838}
+  - component: {fileID: 2396198505765063200}
   m_Layer: 0
-  m_Name: EnemyMissle
+  m_Name: MissleBlue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,20 +97,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-8570135473560309197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4893738839378643074}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8df412a563fda94c8d21ecfe3fcaf4c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveAxis: {x: 0, y: 1, z: 5}
-  speed: 1
 --- !u!114 &-5351772299001585838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,8 +109,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95737d8fd37c2204abca9dbb93c56a06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  destroyTime: 4
+  destroyTime: 5
   OnEnableLog: 0
   OnDisableLog: 0
   OnDestroyLog: 0
   StopOnLog: 0
+--- !u!114 &2396198505765063200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4893738839378643074}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa4e0b80096ecbe419faf08f5876cb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  acceleration: 1
+  accelerationCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0.077488475
+      outSlope: 0.077488475
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.112443775
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 3.2953954
+      outSlope: 3.2953954
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.026236951
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  guidedMissileAngle: 0.02

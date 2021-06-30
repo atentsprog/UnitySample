@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Smaple8.Collider
+namespace Sample8.Collider
 {
     public class PlayerPhycCode : MonoBehaviour
     {
