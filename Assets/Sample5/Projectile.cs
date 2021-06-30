@@ -39,7 +39,14 @@ namespace Sample5.Projectile
                     Vector3 targetDirection = targetPos - transform.position;
 
                     if (targetDirection != Vector3.zero)
-                        transform.LookAt(curPosition + Vector3.Slerp(transform.forward, targetDirection, guidedMissileAngle));
+                    {
+                        // 회전 방법1. (같은 의미)
+                        //transform.LookAt(curPosition + Vector3.Slerp(transform.forward, targetDirection, guidedMissileAngle));
+
+                        // 회전 방법2. (같은 의미)
+                        var qRot = Quaternion.LookRotation(Vector3.Slerp(transform.forward, targetDirection, guidedMissileAngle));
+                        transform.rotation = qRot;
+                    }
                 }
             }
 
