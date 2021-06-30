@@ -36,22 +36,22 @@ namespace Sample5.Projectile
                 Vector3 targetPos = ProjectileTarget.instance.transform.position;
                 if (targetPos.y < curPosition.y) // 플레이어를 지나쳤다면 더이상 유도 되지 않게 하자.
                 {
-                    Vector3 targetDirection = targetPos - transform.position;
+                    Vector3 targetDirection = (targetPos - curPosition).normalized;
 
                     if (targetDirection != Vector3.zero)
                     {
-                        // 회전 방법1. (같은 의미)
-                        //transform.LookAt(curPosition + Vector3.Slerp(transform.forward, targetDirection, guidedMissileAngle));
+                        //회전 방법1. (같은 의미)
+                        transform.LookAt(curPosition + Vector3.Slerp(transform.forward, targetDirection, guidedMissileAngle));
 
-                        // 회전 방법2. (같은 의미)
-                        var qRot = Quaternion.LookRotation(Vector3.Slerp(transform.forward, targetDirection, guidedMissileAngle));
-                        transform.rotation = qRot;
+                        ////// 회전 방법2. (같은 의미)
+                        //var qRot = Quaternion.LookRotation(Vector3.Slerp(transform.forward, targetDirection, guidedMissileAngle));
+                        //transform.rotation = qRot;
                     }
                 }
             }
 
-            //transform.position = transform.position + transform.forward * speed * Time.deltaTime;
-            transform.Translate(0, 0, speed * Time.deltaTime, Space.Self);
+            transform.position = transform.position + transform.forward * speed * Time.deltaTime;
+            ////transform.Translate(0, 0, speed * Time.deltaTime, Space.Self);
         }
     }
 }
