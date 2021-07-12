@@ -17,17 +17,29 @@ public class SoundManager : MonoBehaviour
             {
                 GameObject go = new GameObject(nameof(SoundManager), typeof(SoundManager));
                 m_instance = go.GetComponent<SoundManager>();
-
-                DontDestroyOnLoad(go);
             }
 
             return m_instance;
         }
     }
 
+    static bool applicationIsQuitting;
+
+    void ApplicationIsQuitting()
+    {
+        applicationIsQuitting = true;
+        //Debug.Log($"ApplicationIsQuitting:{applicationIsQuitting} {Time.realtimeSinceStartupAsDouble}");
+    }
     private void Awake()
     {
-        if(defaultAudioSource == null)
+        if (m_instance != null)
+            return;
+
+        m_instance = this;
+        DontDestroyOnLoad(gameObject);
+
+        Application.quitting += ApplicationIsQuitting;
+        if (defaultAudioSource == null)
         {
             var newGo = new GameObject("AudioSource", typeof(AudioSource));
             defaultAudioSource = newGo.GetComponent<AudioSource>();
@@ -37,6 +49,9 @@ public class SoundManager : MonoBehaviour
 
     public static void PlaySound(AudioClip audioClip, float volume, Vector3? position = null)
     {
+        if (applicationIsQuitting)
+            return;
+
         Instance._PlaySound(audioClip, volume, position);
     }
 
@@ -46,6 +61,13 @@ public class SoundManager : MonoBehaviour
         // 없으면 2D사운드(리스너와 거리가 멀어져도 소리크기 줄어들지 않음)로 재생(UI)
         // * 리스너는 기본으로 메인카메라에 달려 있음, 보통 캐릭터에 리스너 달아두는게 일반적임.
 
+        //Debug.Log($"applicationIsQuitting:{applicationIsQuitting}, {audioClip.name} {Time.realtimeSinceStartupAsDouble}");
+
+        // 에디터종료시는 사운드 재생하면 안된다.
+        if (applicationIsQuitting)
+        {
+            return;
+        }
 
         AudioSource audioSource = null;
         
