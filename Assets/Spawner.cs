@@ -30,7 +30,19 @@ public class Spawner : MonoBehaviour
         //Debug.LogWarning("리스트 요소 프린트 하기 방식3");
         //points.ForEach(x => Debug.Log(x));
 
-        StartCoroutine( StartSpawn());
+        SpawnToggle();
+    }
+
+    Coroutine handle;
+    public void SpawnToggle()
+    {
+        if (handle == null)
+            handle = StartCoroutine(StartSpawn());
+        else
+        {
+            StopCoroutine(handle);
+            handle = null;
+        }
     }
 
     private IEnumerator StartSpawn()

@@ -72,20 +72,40 @@ public class ObjectPool : MonoBehaviour
     }
 
     public List<PoolItemInfo> poolList = new List<PoolItemInfo>();
-    static ObjectPool instance;
+    static ObjectPool m_instance;
+    static ObjectPool Instance
+    {
+        get
+        {
+            if (m_instance == null)
+            {
+                GameObject go = new GameObject(nameof(ObjectPool), typeof(ObjectPool));
+                m_instance = go.GetComponent<ObjectPool>();
+
+                DontDestroyOnLoad(go);
+            }
+
+            return m_instance;
+        }
+    }
+
     private void Awake()
     {
-        instance = this;
+        m_instance = this;
 	}
 
+    new public static T Instantiate<T>(T go) where T : Component
+    {
+        return Instance.InstantiateGo(go.gameObject).GetComponent<T>();
+    }
     public static GameObject Instantiate(GameObject go)
     {
-        return instance.InstantiateGo(go);
+        return Instance.InstantiateGo(go);
     }
 
     new public static void Destroy(Object obj, float t)
     {
-        instance.DestroyGo(obj, t);
+        Instance.DestroyGo(obj, t);
     }
     GameObject InstantiateGo(GameObject original)
     {
