@@ -9,7 +9,7 @@ public class SoundManager : MonoBehaviour
     public AudioSource defaultAudioSource;
     static SoundManager m_instance;
     public int globalVolume = 1;
-    static SoundManager Instance
+   private static SoundManager Instance
     {
         get
         {
@@ -49,7 +49,7 @@ public class SoundManager : MonoBehaviour
 
     public static void PlaySound(AudioClip audioClip, float volume, Vector3? position = null)
     {
-        if (applicationIsQuitting)
+        if (applicationIsQuitting) //  게임 종료시 Instance가 생성되는 것을 방지하기위해 추가.
             return;
 
         Instance._PlaySound(audioClip, volume, position);
@@ -63,13 +63,16 @@ public class SoundManager : MonoBehaviour
 
         //Debug.Log($"applicationIsQuitting:{applicationIsQuitting}, {audioClip.name} {Time.realtimeSinceStartupAsDouble}");
 
+        if (globalVolume <= 0)
+            return;
+
         // 에디터종료시는 사운드 재생하면 안된다.
         if (applicationIsQuitting)
         {
             return;
         }
 
-        AudioSource audioSource = null;
+        AudioSource audioSource;
         
         if(useObjectPool)
             audioSource = ObjectPool.Instantiate(defaultAudioSource);
