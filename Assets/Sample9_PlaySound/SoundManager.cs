@@ -41,7 +41,8 @@ public class SoundManager : MonoBehaviour
         Application.quitting += ApplicationIsQuitting;
         if (defaultAudioSource == null)
         {
-            var newGo = new GameObject("AudioSource", typeof(AudioSource));
+            //var newGo = new GameObject("AudioSource", typeof(AudioSource));
+            var newGo = new GameObject(nameof(AudioSource), typeof(AudioSource));
             defaultAudioSource = newGo.GetComponent<AudioSource>();
             defaultAudioSource.playOnAwake = false;
         }
