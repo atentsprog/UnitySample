@@ -11,7 +11,7 @@ public class UISoundPlay : MonoBehaviour
     private void Awake()
     {
         GetComponent<Button>().AddListener(this, PlaySound);
-        //GetComponent<Button>().onClick.AddListener(_PlaySound);
+        //GetComponent<Button>().onClick.AddListener(PlaySound);
     }
 
     private void PlaySound()

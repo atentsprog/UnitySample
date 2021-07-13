@@ -16,7 +16,6 @@ public class SoundPlay : MonoBehaviour
     public TimingType playTiming = TimingType.Start;
     public AudioClip AudioClip;
     public float volume = 1;
-    public bool uISound = false;
 
     private void Awake()
     {
@@ -44,9 +43,6 @@ public class SoundPlay : MonoBehaviour
         if (currentTime != playTiming)
             return;
 
-        Vector3? pos = null;
-        if (uISound == false)
-            pos = transform.position;
-        SoundManager.PlaySound(AudioClip, volume, pos);
+        SoundManager.PlaySound(AudioClip, volume, transform.position);
     }
 }
