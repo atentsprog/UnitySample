@@ -87,6 +87,13 @@ public class BgmPlayer : MonoBehaviour
                     audioSource.Stop();
                     audioSource.clip = null;
                 });
+
+            // 위와 같은 내용
+            //audioSource.DOFade(0, bgmInfo.fadeOutTime).OnComplete(
+            //    () => {
+            //    audioSource.Stop();
+            //    audioSource.clip = null;
+            //});
         }
         else
         { 
