@@ -47,7 +47,10 @@ public class BgmPlayer : MonoBehaviour
         if (bgm.fadeInTime > 0)
         {
             audioSource.volume = bgm.fadeInBeginVolume;
+
             DOTween.To(() => audioSource.volume, x => audioSource.volume = x, bgm.volume, bgm.fadeInTime);
+
+            //audioSource.DOFade(bgm.volume, bgm.fadeInTime); // 위와 같은 결과.
         }
         else
         {
