@@ -54,5 +54,6 @@ public class CoolTimeTest : MonoBehaviour
 
             yield return null;
         }
+        coolTimeIconImage.fillAmount = 1;
     }
 }
