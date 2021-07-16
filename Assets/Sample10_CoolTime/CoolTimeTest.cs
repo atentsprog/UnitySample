@@ -7,8 +7,10 @@ using UnityEngine.UI;
 public class CoolTimeTest : MonoBehaviour
 {
     InputField inputField;
-    Image dashCoolTimeImg;
-    Text DashRemindTimeTxt;
+    Image coolTimeIconImage;
+    Text remainTimeText1;
+    Text remainTimeText2;
+    Text remainTimeText3;
 
     void Start()
     {
@@ -16,44 +18,41 @@ public class CoolTimeTest : MonoBehaviour
         if (string.IsNullOrEmpty(inputField.text))
             inputField.text = "3";
 
-        dashCoolTimeImg = transform.Find("SkillIcon/Image").GetComponent<Image>();
-        DashRemindTimeTxt = transform.Find("SkillIcon/Text").GetComponent<Text>();
+        coolTimeIconImage = transform.Find("SkillIcon/Image").GetComponent<Image>();
+        remainTimeText1 = transform.Find("SkillIcon/Text1").GetComponent<Text>();
+        remainTimeText2 = transform.Find("SkillIcon/Text2").GetComponent<Text>();
+        remainTimeText3 = transform.Find("SkillIcon/Text3").GetComponent<Text>();
 
-        transform.Find("Method1Button").GetComponent<Button>().AddListener(this, OnClickSkillButton1);
-        transform.Find("Method2Button").GetComponent<Button>().AddListener(this, OnClickSkillButton2);
-    }
-
-    enum MethodType
-    {
-        방법1,
-        방법2
-    }
-    private void OnClickSkillButton2()
-    {
-        StartCoroutine(DashCoolTimeTxt(MethodType.방법2));
+        transform.Find("Method1Button").GetComponent<Button>().AddListener(this, OnClickSkillButton);
     }
 
-    private void OnClickSkillButton1()
+    Coroutine handle;
+    private void OnClickSkillButton()
     {
-        StartCoroutine(DashCoolTimeTxt(MethodType.방법1));
+        if (handle != null)
+            StopCoroutine(handle);
+        handle = StartCoroutine(StartCoolTimeCo());
     }
-    private IEnumerator DashCoolTimeTxt(MethodType methodType)
+
+
+    private IEnumerator StartCoolTimeCo()
     {
-        float dashCooltxt = float.Parse(inputField.text);
-        float endTime = Time.time + dashCooltxt;
+        float coolTimeSeconds = float.Parse(inputField.text);
+        float endTime;//쿨타임 종룟히간
+            endTime = Time.time + coolTimeSeconds;
+
         while (endTime > Time.time)
         {
-            DashRemindTimeTxt.text = ((int)(endTime - Time.time) + 1).ToString();
+            float remainTime = endTime - Time.time;
 
-            if(methodType == MethodType.방법1)
-                dashCoolTimeImg.fillAmount = 1 - (endTime - Time.time) / dashCooltxt;
+            remainTimeText1.text = ((int)(remainTime + 1)).ToString();
+            remainTimeText2.text = (remainTime + 1).ToString("0.0");
+            remainTimeText3.text = remainTime.ToString("0.0");
 
-
-            if (methodType == MethodType.방법2)
-                dashCoolTimeImg.fillAmount = Mathf.Lerp(1, 0, (endTime - Time.time) / dashCooltxt);
+            float remainPercent = remainTime / coolTimeSeconds;   // 1.0 -> 0.0
+            coolTimeIconImage.fillAmount = 1 - remainPercent;       // 0.0 -> 1.0
 
             yield return null;
         }
-
     }
 }
