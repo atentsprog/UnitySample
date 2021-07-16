@@ -38,7 +38,7 @@ public class CoolTimeTest : MonoBehaviour
     private IEnumerator StartCoolTimeCo()
     {
         float coolTimeSeconds = float.Parse(inputField.text);
-        float endTime;//쿨타임 종룟히간
+        float endTime;//쿨타임 종료시간, 3
             endTime = Time.time + coolTimeSeconds;
 
         while (endTime > Time.time)
