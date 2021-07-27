@@ -74,6 +74,31 @@ public class LinqSample : MonoBehaviour
 
         CreateData();  // 정보 생성
     }
+
+    public List<int> intList = new List<int>(new int[] { 1, 2, 3 });
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            var single = intList.Single();
+            print(single);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            var single = intList.First();
+            print(single);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            var SingleOrDefault = intList.SingleOrDefault();
+            print(SingleOrDefault);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            var FirstOrDefault = intList.FirstOrDefault();
+            print(FirstOrDefault);
+        }
+    }
     //void NameSortFn()
     //{
     //    SortFn(SortType.Name);
