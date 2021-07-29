@@ -21,11 +21,13 @@ namespace DataSaveLoad
         public GameData devSettings = null;
         void Start()
         {
+#if UNITY_EDITOR
             if (devSettings)
             {
                 GameData._instance = devSettings;
             }
             else
+#endif
             {
                 // JSON 파일 유무를 체크
                 if (System.IO.File.Exists(SavedSettingsPath))

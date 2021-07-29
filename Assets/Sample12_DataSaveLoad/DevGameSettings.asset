@@ -13,13 +13,19 @@ MonoBehaviour:
   m_Name: DevGameSettings
   m_EditorClassIdentifier: 
   players:
-  - Name: tester
-    Color: {r: 1, g: 0, b: 0, a: 1}
+  - Name: 111
+    Color: {r: 1, g: 0.66342616, b: 0, a: 1}
     comment: 
-  - Name: why
-    Color: {r: 0, g: 0, b: 1, a: 1}
+  - Name: "\uC65C"
+    Color: {r: 1, g: 0, b: 1, a: 1}
     comment: 
   - Name: 
     Color: {r: 0, g: 0, b: 0, a: 0}
     comment: 
-  NumberOfRounds: 21
+  - Name: 
+    Color: {r: 0, g: 0, b: 0, a: 0}
+    comment: 
+  - Name: 
+    Color: {r: 0, g: 0, b: 0, a: 0}
+    comment: 
+  NumberOfRounds: 23

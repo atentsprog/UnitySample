@@ -8,8 +8,6 @@ namespace DataSaveLoad
     [Serializable]
     public class PlayerInfo
     {
-        /* [Serializable] class의 public 필드는 직렬화 대상이다. (프로퍼티 제외) */
-        // 3가지 필드(Name, Color, comment)가 직렬화된다.
         public string Name;
         public Color Color;
         // priavate이지만 [SerializeField]의 필드이므로 직렬화 대상에 포함된다.
@@ -21,11 +19,12 @@ namespace DataSaveLoad
         }
     }
 
-    [CreateAssetMenu(fileName = "New GameData", menuName = "Create GameData", order = 1)]
+    [CreateAssetMenu(fileName = "New GameData", menuName = "Create GameData", order = 100)]
     public class GameData : ScriptableObject
     {
         // 직렬화 대상
         public List<PlayerInfo> players;
+        public int NumberOfRounds;
 
         public static GameData _instance;
         public static GameData Instance
@@ -36,7 +35,6 @@ namespace DataSaveLoad
             }
         }
 
-        public int NumberOfRounds;
 
         public static void LoadFromJSON(string path)
         {
