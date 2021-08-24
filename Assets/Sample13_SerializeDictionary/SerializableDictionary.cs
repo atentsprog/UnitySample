@@ -17,7 +17,7 @@ public class SerializableDictionary<TKey, TValue> : SerializableDictionary, ISer
     private List<SerializableKeyValuePair> list = new List<SerializableKeyValuePair>();
 
     [Serializable]
-    public struct SerializableKeyValuePair
+    public class SerializableKeyValuePair
     {
         public TKey Key;
         public TValue Value;

@@ -16,20 +16,29 @@ public class SerializationList<T>
     }
 }
 
+[System.Serializable]
+public class MyClass
+{
+    public List<int> intList = new List<int>();
+}
 public class SerializeTest : MonoBehaviour
 {
-    public SerializableDictionary<string, string> strStrDic = new SerializableDictionary<string, string>();
+    //public SerializableDictionary<string, string> strStrDic = new SerializableDictionary<string, string>();
     public SerializableDictionary<string, int> inventoryData = new SerializableDictionary<string, int>();
-    public SerializableDictionary<int, int> intIntDic = new SerializableDictionary<int, int>();
+    //public SerializableDictionary<int, int> intIntDic = new SerializableDictionary<int, int>();
     public List<int> intList = new List<int>();
-
+    //public MyClass myClass;
     string inventoryDataKey = "inventoryData";
     string intListKey = "intList";
     void Start()
     {
-        strStrDic["string"] = "test";
+        //myClass = new MyClass();
+        //myClass.intList.Add(1);
+
+        //strStrDic["string"] = "test";
         inventoryData["str1"] = 1;
-        intIntDic[1] = 2;
+        inventoryData["Test"] = 1;
+        //intIntDic[1] = 2;
     }
 
     [ContextMenu("Save")]
