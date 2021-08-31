@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Sample14_page
 {
@@ -12,17 +13,28 @@ namespace Sample14_page
         PageUISampleItem baseItem;
         public int currentPage = 1;
         public int countPerPage = 12;
+        int MaxPage => (testItems.Count / countPerPage) + 1;
+
+        Text pageText;
         void Start()
         {
+            pageText = transform.Find("PageText").GetComponent<Text>();
+
+            transform.Find("PreviousButton").GetComponent<Button>().onClick.AddListener(() => PageMove(-1));
+            transform.Find("NextButton").GetComponent<Button>().onClick.AddListener(() => PageMove(1));
+
             baseItem = GetComponentInChildren<PageUISampleItem>();
 
             CreatePageItems(currentPage);
         }
 
+
         List<GameObject> items = new List<GameObject>();
         private void CreatePageItems(int _currentPage)
         {
-            var pageItems = testItems.Skip((_currentPage -1) * countPerPage).Take(countPerPage).ToList();
+            var pageItems = testItems
+                .Skip((_currentPage -1) * countPerPage)
+                .Take(countPerPage);
 
             items.ForEach(x => Destroy(x));
             items.Clear();
@@ -34,9 +46,10 @@ namespace Sample14_page
                 items.Add(newItem.gameObject);
             }
             baseItem.gameObject.SetActive(false);
+
+            pageText.text = $"{_currentPage}/{MaxPage}";
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -49,6 +62,10 @@ namespace Sample14_page
         private void PageMove(int offset)
         {
             currentPage += offset;
+
+            currentPage = Math.Max(1, currentPage);
+            currentPage = Math.Min(MaxPage, currentPage);
+
             CreatePageItems(currentPage);
         }
     }
