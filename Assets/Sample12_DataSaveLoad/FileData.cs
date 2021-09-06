@@ -1,31 +1,41 @@
-﻿
+﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
-[System.Serializable]
-public class Data<T>
-{
-    public T data;
-}
 
-
+/// <summary>
+/// 파일로 저장하기 때문에 보안에 취약
+/// 파일에 저장하므로 느림
+/// </summary>
+/// <typeparam name="T"></typeparam>
 [System.Serializable]
-public class PlayerPrefsData<T> where T : new()
+public class FileData<T> where T : new()
 {
     public T data = default;
     readonly string key;
     public bool useDebug;
 
-    public PlayerPrefsData(string _key)
+    public FileData(string _key)
     {
         key = _key;
         LoadData();
     }
 
 
+    string DirPath =>
+#if UNITY_EDITOR
+        $"{Application.dataPath}/FileData";
+#else
+        $"{Application.persistentDataPath}";
+#endif
+    string FilePath => $"{DirPath}/{key}.txt";
+
     public void LoadData()
-    {
-        data = JsonUtility.FromJson<T>(PlayerPrefs.GetString(key));
+    {        
+        if(File.Exists(FilePath))
+            data = JsonUtility.FromJson<T>(File.ReadAllText(FilePath));
+
         if (data == null)
         {
             Log("record == null");
@@ -42,7 +52,9 @@ public class PlayerPrefsData<T> where T : new()
 
         try
         {
-            PlayerPrefs.SetString(key, json);
+            if (Directory.Exists(DirPath) == false)
+                Directory.CreateDirectory(DirPath);
+            File.WriteAllText(FilePath, json);
             Log("json:" + json);
         }
         catch (System.Exception err)
