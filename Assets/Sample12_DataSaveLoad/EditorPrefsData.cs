@@ -2,12 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class Data<T>
-{
-    public T data;
-}
-
 
 [System.Serializable]
 public class PlayerPrefsData<T> where T : new()
@@ -43,7 +37,6 @@ public class PlayerPrefsData<T> where T : new()
         try
         {
             PlayerPrefs.SetString(key, json);
-            PlayerPrefs.Save();
             Log("json:" + json);
         }
         catch (System.Exception err)

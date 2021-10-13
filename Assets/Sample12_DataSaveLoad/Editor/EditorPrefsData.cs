@@ -1,22 +1,17 @@
 ﻿
 using System.Collections.Generic;
 using UnityEngine;
-
-[System.Serializable]
-public class Data<T>
-{
-    public T data;
-}
+using UnityEditor;
 
 
 [System.Serializable]
-public class PlayerPrefsData<T> where T : new()
+public class EditorPrefsData<T> where T : new()
 {
     public T data = default;
     readonly string key;
     public bool useDebug;
 
-    public PlayerPrefsData(string _key)
+    public EditorPrefsData(string _key)
     {
         key = _key;
         LoadData();
@@ -25,7 +20,7 @@ public class PlayerPrefsData<T> where T : new()
 
     public void LoadData()
     {
-        data = JsonUtility.FromJson<T>(PlayerPrefs.GetString(key));
+        data = JsonUtility.FromJson<T>(EditorPrefs.GetString(key));
         if (data == null)
         {
             Log("record == null");
@@ -42,8 +37,7 @@ public class PlayerPrefsData<T> where T : new()
 
         try
         {
-            PlayerPrefs.SetString(key, json);
-            PlayerPrefs.Save();
+            EditorPrefs.SetString(key, json);
             Log("json:" + json);
         }
         catch (System.Exception err)
