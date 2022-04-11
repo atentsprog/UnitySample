@@ -713,9 +713,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   testList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 985567985}
 --- !u!4 &1565533979
 Transform:
   m_ObjectHideFlags: 0

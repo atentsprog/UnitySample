@@ -26,6 +26,7 @@ public class OnGUI_2 : MonoBehaviour
     #endregion 해상도 설정부분 끝
 
     public string textFieldString = "TextField:한줄만 입력가능";
+	[TextArea]
 	public string textAreaString = "TextArea:자동으로 줄 바뀜";
 	public int tabIndex;
 	string[] tabSubject = { "Button,Label", "TextField, TextArea", "CheckBox, Toggle", "기타" };
@@ -117,7 +118,7 @@ public class OnGUI_2 : MonoBehaviour
 
 	private void OnGUI_TextFieldTextArea()
 	{
-		scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Height(70));
+		scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Height(120));
 		{ 
 			textFieldString = GUILayout.TextField(textFieldString);
 			textAreaString = GUILayout.TextArea(textAreaString);
