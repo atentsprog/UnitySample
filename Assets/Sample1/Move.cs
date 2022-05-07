@@ -23,6 +23,7 @@ public class Move : MonoBehaviour
         Vector3 move  = new Vector3(0, 0, 0); // Vector3.zero
 
         // || -> or
+        // A || B -> A 혹은 B 둘중 하나라도 맞으면 뒤에 있는 명령 실행
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) move.z = 1;
         if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) move.z = -1;
 

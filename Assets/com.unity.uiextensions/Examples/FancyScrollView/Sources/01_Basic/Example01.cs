@@ -12,13 +12,18 @@ namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample01
     {
         [SerializeField] ScrollView scrollView = default;
 
-        void Start()
-        {
-            var items = Enumerable.Range(0, 20)
-                .Select(i => new ItemData($"Cell {i}"))
-                .ToArray();
+        public ItemData[] items = Enumerable.Range(0, 20)
+               .Select(i => new ItemData($"Cell {i}"))
+               .ToArray();
+        //void Start()
+        //{
+        //    scrollView.UpdateData(items);
+        //}
 
-            scrollView.UpdateData(items);
+        private void Update()
+        {
+            if(Input.GetKeyDown(KeyCode.A))
+                scrollView.UpdateData(items);
         }
     }
 }

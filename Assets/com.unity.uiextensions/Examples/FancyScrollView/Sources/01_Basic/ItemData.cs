@@ -6,9 +6,10 @@
 
 namespace UnityEngine.UI.Extensions.Examples.FancyScrollViewExample01
 {
+    [System.Serializable]
     class ItemData
     {
-        public string Message { get; }
+        public string Message;
 
         public ItemData(string message)
         {
