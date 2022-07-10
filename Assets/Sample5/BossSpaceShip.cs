@@ -13,7 +13,7 @@ namespace Sample5.Projectile
         public int count = 36;
 
         public Vector3 missleSpawnAxis = new Vector3(0, 0, 1);
-        public Vector3 missleMoveAxis = new Vector3(0, 1, 0);
+        public Vector3 missleAddRotation = new Vector3(0, 90, 0);
         public void SpawnMissileFn()
         {
             float angle = 0;
@@ -25,7 +25,7 @@ namespace Sample5.Projectile
                 //var toAngle = transform.forward; // ( 0, 0, 1)
                 var eulerAngle = transform.eulerAngles; // (0, 0, 180)
                 if (count > 1)
-                    eulerAngle += missleSpawnAxis * (startAngle + (angle * i));
+                    eulerAngle += missleSpawnAxis * (startAngle + (angle * i)) + missleAddRotation;
 
                 Quaternion lookRotation = Quaternion.Euler(eulerAngle);
                 Instantiate(missleGo, spawnPos.position, lookRotation);
